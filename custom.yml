@@ -1,32 +1,40 @@
+---
+profile: glinet_axt1800
+target: ipq807x
+subtarget: ipq60xx
+description: Build image for the GL.iNET AXT1800
+image: bin/targets/ipq807x/ipq60xx/openwrt-ipq807x-glinet_axt1800-squashfs-sysupgrade.tar
 feeds:
-  - name: custom
-    path: ../feeds_dir/custom
-  - name: helloworld
-    uri: https://github.com/fw876/helloworld.git
+  - name: ipq807x
+    path: ../../feeds/ipq807x
+  - name: wifi_ax
+    path: ../../feeds/wifi-ax
+  - name: gl_feeds_common
+    uri: https://github.com/gl-inet/gl-feeds.git
+    revision: de64c6042bc6b0849abab616ba2351c919326860
+  - name: luci
+    uri: https://github.com/openwrt/luci.git
+    revision: 1c3b32dc1bec15e3076a447762b1c4f94eb75fb7
+  - name: open_app_filter
+    uri: https://github.com/destan19/OpenAppFilter.git
+    branch: oaf-5.1.0
+    revision: 04b701357c271a1bf97afa5dbfbfd02f4861aa25
+  - name: immortalwrt_luci
+    uri: https://github.com/immortalwrt/luci.git
+    branch: openwrt-21.02
+    revision: 786e681d614ca9d4da771e993e9ba12f587c036f
+  - name: kenzok8_packages
+    uri: https://github.com/kenzok8/openwrt-packages.git
     branch: master
+    revision: 46856befbe88ab4b72829cb45531cee730cf7d84
+  - name: kenzok8_small
+    uri: https://github.com/kenzok8/small.git
+    branch: master
+    revision: ba0e907af63c5f7dff8a0a513076915a15b75b5f
+include: []
 packages:
-  - luci-app-ssr-plus
-  - luci-app-ddns
-  - ddns-scripts
-  - ddns-scripts-services
-  - ddns-scripts_aliyun
-  - luci-app-uhttpd
-  - dnsmasq-full
-  - luci-app-commands
-  - luci-app-mwan3
-  - luci-app-wireguard
-  - wireguard
-  - luci-app-eqos
-  - wireguard-tools
-  - default-settings
-
-
-
-diffconfig: |
-  CONFIG_PACKAGE_wpad-basic=n
-  CONFIG_PACKAGE_wpad=n
-  CONFIG_PACKAGE_dnsmasq=n
-  CONFIG_PACKAGE_luci-i18n-ddns-zh-cn=y
-  CONFIG_LUCI_LANG_zh_Hans=y
-  CONFIG_BUSYBOX_CUSTOM=y
-  CONFIG_BUSYBOX_CONFIG_FEATURE_FLOAT_SLEEP=y
+  - wireless-regdb
+  - wget-ssl
+  - kmod-wireguard-backport
+  - luci-app-openclash
+  - luci-app-passwall2
